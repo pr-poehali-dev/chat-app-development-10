@@ -109,7 +109,20 @@ const MESSAGES: Record<number, Array<{ id: number; text: string; mine: boolean; 
 
 type CallState = "idle" | "calling" | "active" | "video";
 
-export default function Index() {
+interface User {
+  id: number;
+  username: string;
+  display_name: string;
+  avatar_color: string;
+}
+
+interface IndexProps {
+  user: User;
+  token: string;
+  onLogout: () => void;
+}
+
+export default function Index({ user, onLogout }: IndexProps) {
   const [activeChat, setActiveChat] = useState<number>(1);
   const [messages, setMessages] = useState(MESSAGES);
   const [input, setInput] = useState("");
@@ -272,15 +285,19 @@ export default function Index() {
         {/* Profile */}
         <div className="p-4 border-t border-white/5">
           <div className="flex items-center gap-3 px-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
-              Я
+            <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${user.avatar_color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+              {user.display_name.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold truncate">Вы</p>
+              <p className="text-sm font-semibold truncate">{user.display_name}</p>
               <p className="text-xs text-emerald-400 font-medium">В сети</p>
             </div>
-            <button className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors">
-              <Icon name="Settings" size={15} className="text-muted-foreground" />
+            <button
+              onClick={onLogout}
+              title="Выйти"
+              className="w-8 h-8 rounded-lg hover:bg-red-500/20 hover:text-red-400 flex items-center justify-center transition-colors"
+            >
+              <Icon name="LogOut" size={15} className="text-muted-foreground" />
             </button>
           </div>
         </div>
