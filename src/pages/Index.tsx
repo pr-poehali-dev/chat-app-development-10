@@ -191,9 +191,9 @@ export default function Index() {
         {/* Logo */}
         <div className="px-5 pt-5 pb-4 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center flex-shrink-0" style={{ boxShadow: "0 0 20px rgba(0,229,255,0.3)" }}>
-            <span className="text-black font-black text-sm">P</span>
+            <span className="text-black font-black text-sm">T</span>
           </div>
-          <span className="text-xl font-black gradient-brand-text tracking-tight">Pulse</span>
+          <span className="text-xl font-black gradient-brand-text tracking-tight">TalkNest</span>
           <div className="ml-auto">
             <button className="w-8 h-8 rounded-lg glass-light flex items-center justify-center hover:bg-white/10 transition-colors">
               <Icon name="PenSquare" size={15} className="text-muted-foreground" />
